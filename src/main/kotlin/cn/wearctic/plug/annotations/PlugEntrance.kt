@@ -1,4 +1,6 @@
 package cn.wearctic.plug.annotations
 
-annotation class PlugEntrance {
-}
+@Target(AnnotationTarget.FUNCTION)
+@Retention
+@MustBeDocumented
+annotation class PlugEntrance(val key: String)
