@@ -19,7 +19,7 @@ open class PlugAnnotationBeanPostProcessor(private val mapInfo: MutableMap<Strin
             annotation?.let {
                 val key = it.key
                 val list = mapInfo.getOrDefault(key, mutableListOf())
-                list.add(Invocation(method, bean, it.order))
+                list.add(Invocation(method, bean, order = it.order, condition = it.condition))
                 list.sortBy { it0 -> it0.order }
                 mapInfo[key] = list
             }

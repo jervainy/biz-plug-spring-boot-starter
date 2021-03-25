@@ -14,15 +14,17 @@ object PlugInvocationContext {
     }
 
     fun register(params: Map<String, Any>) {
-        val ctx = invocationCtx.get()?: StandardEvaluationContext()
+        val ctx = invocationCtx.get() ?: StandardEvaluationContext()
         params.forEach { (t, u) -> ctx.setVariable(t, u) }
         invocationCtx.set(ctx)
     }
 
     fun getVariable(variableName: String): Any? {
-        val ctx = invocationCtx.get()?: return null
+        val ctx = invocationCtx.get() ?: return null
         return ctx.lookupVariable(variableName)
     }
+
+    internal fun getContext() = invocationCtx.get()
 
     internal fun clear() = invocationCtx.remove()
 
