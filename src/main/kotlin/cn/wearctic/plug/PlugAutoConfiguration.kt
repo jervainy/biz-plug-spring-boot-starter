@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Role
 import org.springframework.core.Ordered
 import org.springframework.core.annotation.Order
 import org.springframework.web.filter.GenericFilterBean
-import java.util.concurrent.ConcurrentHashMap
 import javax.servlet.FilterChain
 import javax.servlet.ServletRequest
 import javax.servlet.ServletResponse
@@ -18,16 +17,14 @@ import javax.servlet.ServletResponse
 @Configuration
 open class PlugAutoConfiguration {
 
-    private val plugMapInfo: ConcurrentHashMap<String, MutableList<Invocation>> = ConcurrentHashMap()
-
     @ConditionalOnMissingBean
     @Bean
     @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
-    open fun plugBeanPostProcessor() = PlugAnnotationBeanPostProcessor(plugMapInfo)
+    open fun plugBeanPostProcessor() = PlugAnnotationBeanPostProcessor()
 
     @ConditionalOnMissingBean
     @Bean
-    open fun plugEntranceAspect() = PlugEntranceAspect(plugMapInfo)
+    open fun plugEntranceAspect() = PlugEntranceAspect()
 
     @Order(Ordered.LOWEST_PRECEDENCE)
     @Bean
