@@ -16,10 +16,10 @@ open class PlugEntranceAspect {
         if (signature is MethodSignature) {
             val annotation = AnnotationUtils.findAnnotation(signature.method, PlugEntrance::class.java)
             if (retVal is Map<*, *>) {
-                PlugInvocationContext.invokePlug(annotation.key, retVal as MutableMap<String, *>?)
+                PlugContextHolder.invokePlug(annotation.key, retVal as MutableMap<String, *>?)
             } else {
-                PlugInvocationContext.register("retVal", retVal)
-                PlugInvocationContext.invokePlug(annotation.key)
+                PlugContextHolder.register("retVal", retVal)
+                PlugContextHolder.invokePlug(annotation.key)
             }
         }
     }

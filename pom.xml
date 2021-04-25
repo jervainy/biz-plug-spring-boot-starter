@@ -5,7 +5,7 @@
 
     <groupId>cn.wearctic</groupId>
     <artifactId>biz-plug-spring-boot-starter</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.3</version>
     <packaging>jar</packaging>
 
     <name>biz-plug-spring-boot-starter</name>

@@ -20,7 +20,7 @@ open class PlugAutoConfiguration {
     @ConditionalOnMissingBean
     @Bean
     @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
-    open fun plugBeanPostProcessor() = PlugAnnotationBeanPostProcessor()
+    open fun plugBeanPostProcessor() = PlugBeanPostProcessor()
 
     @ConditionalOnMissingBean
     @Bean
@@ -31,7 +31,7 @@ open class PlugAutoConfiguration {
     open fun plugFilter() = object: GenericFilterBean() {
         override fun doFilter(p0: ServletRequest?, p1: ServletResponse?, p2: FilterChain) {
             p2.doFilter(p0, p1)
-            PlugInvocationContext.clear()
+            PlugContextHolder.clear()
         }
     }
 
