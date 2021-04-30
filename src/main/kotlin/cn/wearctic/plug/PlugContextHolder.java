@@ -81,6 +81,9 @@ public class PlugContextHolder {
                     it.getMethod().invoke(it.getTarget());
                 } catch (InvocationTargetException e) {
                     log.error(e.getMessage());
+                    if (e.getTargetException() instanceof RuntimeException) {
+                        throw (RuntimeException) e.getTargetException();
+                    }
                     throw new RuntimeException(e.getTargetException());
                 } catch (IllegalAccessException e) {
                     log.error(e.getMessage());
