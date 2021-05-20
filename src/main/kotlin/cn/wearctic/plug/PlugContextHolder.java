@@ -53,7 +53,7 @@ public class PlugContextHolder {
     }
 
     public static <E> E getVariable(String variableName, Class<E> clz) {
-        PlugContext ctx = invocationCtx.get();
+        PlugContext ctx = getOrDefault();
         return ctx.getVariable(variableName, clz);
     }
 
