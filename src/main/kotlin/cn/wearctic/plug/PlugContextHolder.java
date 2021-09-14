@@ -12,6 +12,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Supplier;
 
 public class PlugContextHolder {
 
@@ -55,6 +56,14 @@ public class PlugContextHolder {
     public static <E> E getVariable(String variableName, Class<E> clz) {
         PlugContext ctx = getOrDefault();
         return ctx.getVariable(variableName, clz);
+    }
+
+    public static <E> E computeIfAbsent(String variableName, Class<E> clz, Supplier<E> supplier) {
+        E obj = getVariable(variableName, clz);
+        if (obj != null) return obj;
+        obj = supplier.get();
+        register(variableName, obj);
+        return obj;
     }
 
     public static boolean evaluateBool(String expression) {
