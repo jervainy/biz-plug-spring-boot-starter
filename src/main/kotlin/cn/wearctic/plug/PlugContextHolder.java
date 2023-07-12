@@ -89,13 +89,13 @@ public class PlugContextHolder {
                 try {
                     it.getMethod().invoke(it.getTarget());
                 } catch (InvocationTargetException e) {
-                    log.error(e.getMessage());
+                    log.error(e.getMessage(), e);
                     if (e.getTargetException() instanceof RuntimeException) {
                         throw (RuntimeException) e.getTargetException();
                     }
                     throw new RuntimeException(e.getTargetException());
                 } catch (IllegalAccessException e) {
-                    log.error(e.getMessage());
+                    log.error(e.getMessage(), e);
                     throw new RuntimeException(e);
                 }
             }

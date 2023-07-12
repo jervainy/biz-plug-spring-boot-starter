@@ -5,7 +5,7 @@
 
     <groupId>cn.wearctic</groupId>
     <artifactId>biz-plug-spring-boot-starter</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
     <packaging>jar</packaging>
 
     <name>biz-plug-spring-boot-starter</name>
@@ -189,6 +189,12 @@
                         <goals>
                             <goal>sign</goal>
                         </goals>
+                        <configuration>
+                            <gpgArguments>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
